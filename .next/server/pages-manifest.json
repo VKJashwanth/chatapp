@@ -1,9 +1,11 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
   "/api/socket": "pages/api/socket.js",
-  "/rooms": "pages/rooms.js",
-  "/": "pages/index.js",
-  "/rooms/create": "pages/rooms/create.js"
+  "/": "pages/index.html",
+  "/rooms/[id]": "pages/rooms/[id].html",
+  "/rooms/create": "pages/rooms/create.html",
+  "/rooms": "pages/rooms.html",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
 }

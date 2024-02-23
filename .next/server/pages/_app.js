@@ -1,122 +1,416 @@
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
+"use strict";
 (() => {
 var exports = {};
-exports.id = "pages/_app";
-exports.ids = ["pages/_app"];
+exports.id = 888;
+exports.ids = [888];
 exports.modules = {
 
-/***/ "./src/components/Sidebar.jsx":
-/*!************************************!*\
-  !*** ./src/components/Sidebar.jsx ***!
-  \************************************/
+/***/ 798:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Sidebar)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @headlessui/react */ \"@headlessui/react\");\n/* harmony import */ var context_connect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! context/connect */ \"./src/context/connect.js\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ \"next/router\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_headlessui_react__WEBPACK_IMPORTED_MODULE_1__, context_connect__WEBPACK_IMPORTED_MODULE_2__]);\n([_headlessui_react__WEBPACK_IMPORTED_MODULE_1__, context_connect__WEBPACK_IMPORTED_MODULE_2__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n\n\n\n\n\nfunction Sidebar() {\n    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();\n    let { 0: rooms , 1: setRooms  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]);\n    let { 0: user , 1: setUser  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null);\n    let { 0: isOpen , 1: setIsOpen  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false);\n    let { 0: protectedRoom , 1: setProtected  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false);\n    let { 0: password , 1: setPassword  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(\"\");\n    const { connection  } = (0,context_connect__WEBPACK_IMPORTED_MODULE_2__.useConnection)();\n    (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{\n        if (connection) {\n            connection.emit(\"fetchUser\");\n            connection.on(\"user\", (data)=>{\n                if (data === null) {\n                    router.push(\"/\");\n                } else {\n                    setUser(data);\n                }\n            });\n            return ()=>{\n                connection.off(\"user\", (data)=>{\n                    if (data === null) {\n                        router.push(\"/\");\n                    } else {\n                        setUser(data);\n                    }\n                });\n            };\n        }\n    }, [\n        connection\n    ]);\n    (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{\n        if (connection) {\n            connection.emit(\"fetchRooms\");\n            connection.on(\"rooms\", (data)=>{\n                setRooms(data.rooms);\n            });\n            return ()=>{\n                connection.off(\"rooms\", (data)=>{\n                    if (data.isLogged) {\n                        setUser(data.user);\n                    }\n                    setRooms(data.rooms);\n                });\n            };\n        }\n    }, []);\n    const JoinRoom = (room)=>{\n        const { id , passwordProtected  } = room;\n        if (passwordProtected) {\n            setIsOpen(true);\n            setProtected(room);\n            if (password) {\n                connection.emit(\"joinRoom\", {\n                    id,\n                    password\n                });\n            }\n        } else {\n            connection.emit(\"joinRoom\", {\n                id\n            });\n        }\n        connection.off(\"joinRoom\").on(\"joinRoom\", (data)=>{\n            if (data.success) {\n                setIsOpen(false);\n                setPassword(\"\");\n                router.push(\"/rooms/\" + id);\n            } else {\n                if (data?.alreadyIn) {\n                    router.push(\"/rooms/\" + id);\n                } else {\n                    alert(data.error);\n                }\n            }\n        });\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Transition, {\n                appear: true,\n                show: isOpen,\n                as: react__WEBPACK_IMPORTED_MODULE_4__.Fragment,\n                children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Dialog, {\n                    as: \"div\",\n                    className: \"relative z-10\",\n                    onClose: ()=>{\n                        setIsOpen(false);\n                        setPassword(\"\");\n                    },\n                    children: [\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Transition.Child, {\n                            as: react__WEBPACK_IMPORTED_MODULE_4__.Fragment,\n                            enter: \"ease-out duration-300\",\n                            enterFrom: \"opacity-0\",\n                            enterTo: \"opacity-100\",\n                            leave: \"ease-in duration-200\",\n                            leaveFrom: \"opacity-100\",\n                            leaveTo: \"opacity-0\",\n                            children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                className: \"fixed inset-0 bg-black bg-opacity-50\"\n                            }, void 0, false, {\n                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                lineNumber: 101,\n                                columnNumber: 21\n                            }, this)\n                        }, void 0, false, {\n                            fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                            lineNumber: 92,\n                            columnNumber: 17\n                        }, this),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            className: \"fixed inset-0 overflow-y-auto\",\n                            children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                className: \"flex min-h-full items-center justify-center p-4 text-center\",\n                                children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Transition.Child, {\n                                    as: react__WEBPACK_IMPORTED_MODULE_4__.Fragment,\n                                    enter: \"ease-out duration-300\",\n                                    enterFrom: \"opacity-0 scale-95\",\n                                    enterTo: \"opacity-100 scale-100\",\n                                    leave: \"ease-in duration-200\",\n                                    leaveFrom: \"opacity-100 scale-100\",\n                                    leaveTo: \"opacity-0 scale-95\",\n                                    children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Dialog.Panel, {\n                                        className: \"w-full max-w-md transform overflow-hidden rounded-2xl bg-dark-1 p-6 text-left align-middle shadow-xl transition-all\",\n                                        children: [\n                                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Dialog.Title, {\n                                                as: \"h3\",\n                                                className: \"text-lg font-medium leading-6 text-white\",\n                                                children: \"Password Protected Room\"\n                                            }, void 0, false, {\n                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                lineNumber: 116,\n                                                columnNumber: 33\n                                            }, this),\n                                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"form\", {\n                                                onSubmit: (e)=>{\n                                                    e.preventDefault();\n                                                    JoinRoom(protectedRoom);\n                                                },\n                                                children: [\n                                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                                        className: \"mt-2\",\n                                                        children: [\n                                                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                                                                className: \"text-sm text-gray-300\",\n                                                                children: \"This room is password protected. Please enter the password to join.\"\n                                                            }, void 0, false, {\n                                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                                lineNumber: 127,\n                                                                columnNumber: 41\n                                                            }, this),\n                                                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"input\", {\n                                                                type: \"password\",\n                                                                className: \"w-full mt-2 p-2 rounded-md bg-dark-2 text-white outline-none border border-white/5 focus:border-blue-500 transition-all duration-200\",\n                                                                value: password,\n                                                                onChange: (e)=>setPassword(e.target.value)\n                                                            }, void 0, false, {\n                                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                                lineNumber: 131,\n                                                                columnNumber: 41\n                                                            }, this)\n                                                        ]\n                                                    }, void 0, true, {\n                                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                        lineNumber: 126,\n                                                        columnNumber: 37\n                                                    }, this),\n                                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                                        className: \"mt-4\",\n                                                        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"button\", {\n                                                            type: \"button\",\n                                                            className: \"transition-all duration-200 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm\",\n                                                            children: \"Join\"\n                                                        }, void 0, false, {\n                                                            fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                            lineNumber: 140,\n                                                            columnNumber: 41\n                                                        }, this)\n                                                    }, void 0, false, {\n                                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                        lineNumber: 139,\n                                                        columnNumber: 37\n                                                    }, this)\n                                                ]\n                                            }, void 0, true, {\n                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                lineNumber: 122,\n                                                columnNumber: 33\n                                            }, this)\n                                        ]\n                                    }, void 0, true, {\n                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                        lineNumber: 115,\n                                        columnNumber: 29\n                                    }, this)\n                                }, void 0, false, {\n                                    fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                    lineNumber: 106,\n                                    columnNumber: 25\n                                }, this)\n                            }, void 0, false, {\n                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                lineNumber: 105,\n                                columnNumber: 21\n                            }, this)\n                        }, void 0, false, {\n                            fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                            lineNumber: 104,\n                            columnNumber: 17\n                        }, this)\n                    ]\n                }, void 0, true, {\n                    fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                    lineNumber: 88,\n                    columnNumber: 13\n                }, this)\n            }, void 0, false, {\n                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                lineNumber: 87,\n                columnNumber: 9\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"sticky top-0 h-screen w-96 bg-dark-2 text-white p-6 flex flex-col justify-between\",\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: \"flex flex-col items-center space-y-3\",\n                        children: [\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                className: \"text-2xl font-semi-bold leading-normal mb-4\",\n                                children: \"Rooms\"\n                            }, void 0, false, {\n                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                lineNumber: 157,\n                                columnNumber: 17\n                            }, this),\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"button\", {\n                                onClick: ()=>router.push(\"/rooms/create\"),\n                                className: \"w-full rounded-md px-4 py-2 border border-gray-300/5 text-gray-300 bg-zinc-500/10 hover:bg-zinc-500/20 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 transition-all duration-200\",\n                                children: \"Create Room\"\n                            }, void 0, false, {\n                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                lineNumber: 158,\n                                columnNumber: 17\n                            }, this)\n                        ]\n                    }, void 0, true, {\n                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                        lineNumber: 156,\n                        columnNumber: 13\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: \"flex flex-col h-full mt-4 space-y-2\",\n                        children: rooms.map((room)=>{\n                            return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                className: \"flex flex-row items-center gap-2 p-2 pr-4 rounded-md hover:bg-zinc-500/5 transition-all duration-200 cursor-pointer\",\n                                onClick: ()=>JoinRoom(room),\n                                children: [\n                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                                        src: `https://avatars.dicebear.com/api/initials/${room?.name || \"No Name\"}.png`,\n                                        alt: \"username\",\n                                        className: \"w-10 h-10 rounded-md\"\n                                    }, void 0, false, {\n                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                        lineNumber: 163,\n                                        columnNumber: 25\n                                    }, this),\n                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                        className: \"flex-shrink-0 flex flex-col\",\n                                        children: [\n                                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                                className: \"font-semibold\",\n                                                children: room.name\n                                            }, void 0, false, {\n                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                lineNumber: 165,\n                                                columnNumber: 29\n                                            }, this),\n                                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                                className: \"text-xs text-gray-400\",\n                                                children: [\n                                                    \"Created by \",\n                                                    room?.owner?.username.split(0, 5) + \"...\"\n                                                ]\n                                            }, void 0, true, {\n                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                lineNumber: 166,\n                                                columnNumber: 29\n                                            }, this)\n                                        ]\n                                    }, void 0, true, {\n                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                        lineNumber: 164,\n                                        columnNumber: 25\n                                    }, this),\n                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                        className: \"flex flex-row justify-end w-full items-center space-x-1\",\n                                        children: [\n                                            room.passwordProtected && /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"svg\", {\n                                                xmlns: \"http://www.w3.org/2000/svg\",\n                                                className: \"h-5 w-5 text-gray-400\",\n                                                viewBox: \"0 0 20 20\",\n                                                fill: \"currentColor\",\n                                                children: [\n                                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                                                        fillRule: \"evenodd\",\n                                                        d: \"M10 12a2 2 0 100-4 2 2 0 000 4z\",\n                                                        clipRule: \"evenodd\"\n                                                    }, void 0, false, {\n                                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                        lineNumber: 170,\n                                                        columnNumber: 33\n                                                    }, this),\n                                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                                                        fillRule: \"evenodd\",\n                                                        d: \"M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20z\",\n                                                        clipRule: \"evenodd\"\n                                                    }, void 0, false, {\n                                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                        lineNumber: 171,\n                                                        columnNumber: 33\n                                                    }, this)\n                                                ]\n                                            }, void 0, true, {\n                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                lineNumber: 169,\n                                                columnNumber: 56\n                                            }, this),\n                                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                                className: \"text-xs text-gray-400\",\n                                                children: [\n                                                    room.users || 0,\n                                                    \"/\",\n                                                    room.maxUsers\n                                                ]\n                                            }, void 0, true, {\n                                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                                lineNumber: 173,\n                                                columnNumber: 29\n                                            }, this)\n                                        ]\n                                    }, void 0, true, {\n                                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                        lineNumber: 168,\n                                        columnNumber: 25\n                                    }, this)\n                                ]\n                            }, room.id, true, {\n                                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                lineNumber: 162,\n                                columnNumber: 28\n                            }, this);\n                        })\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                        lineNumber: 160,\n                        columnNumber: 13\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: \"flex flex-col items-center space-y-3 mt-6 w-full\",\n                        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            className: \"flex flex-row items-center space-x-2 w-full hover:bg-zinc-500/5 p-4 rounded-lg transition-all duration-200\",\n                            children: [\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                                    src: `https://avatars.dicebear.com/api/micah/${user?.username || \"clqu\"}.png`,\n                                    alt: \"username\",\n                                    className: \"h-10 w-10 rounded-full\"\n                                }, void 0, false, {\n                                    fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                    lineNumber: 181,\n                                    columnNumber: 21\n                                }, this),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                    className: \"font-semibold\",\n                                    children: user?.username\n                                }, void 0, false, {\n                                    fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                                    lineNumber: 182,\n                                    columnNumber: 21\n                                }, this)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                            lineNumber: 180,\n                            columnNumber: 17\n                        }, this)\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                        lineNumber: 179,\n                        columnNumber: 13\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/workspace/chatapp/src/components/Sidebar.jsx\",\n                lineNumber: 155,\n                columnNumber: 9\n            }, this)\n        ]\n    }, void 0, true);\n};\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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a0NBQzdELDRFQUFDUyxLQUFHOzRCQUFDVCxTQUFTLEVBQUMsNEdBQTRHOzs4Q0FDdkgsOERBQUMwQixLQUFHO29DQUFDQyxHQUFHLEVBQUUsQ0FBQyx1Q0FBdUMsRUFBRXJELElBQUksRUFBRXlELFFBQVEsSUFBSSxNQUFNLENBQUMsSUFBSSxDQUFDO29DQUFFRixHQUFHLEVBQUMsVUFBVTtvQ0FBQzdCLFNBQVMsRUFBQyx3QkFBd0I7Ozs7O3dDQUFHOzhDQUN4SSw4REFBQ3VCLE1BQUk7b0NBQUN2QixTQUFTLEVBQUMsZUFBZTs4Q0FBRTFCLElBQUksRUFBRXlELFFBQVE7Ozs7O3dDQUFROzs7Ozs7Z0NBQ3JEOzs7Ozs0QkFDSjs7Ozs7O29CQUNKOztvQkFDUDtDQUNOIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWNoYXQvLi9zcmMvY29tcG9uZW50cy9TaWRlYmFyLmpzeD80MzM3Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERpYWxvZywgVHJhbnNpdGlvbiB9IGZyb20gXCJAaGVhZGxlc3N1aS9yZWFjdFwiO1xyXG5pbXBvcnQgeyB1c2VDb25uZWN0aW9uIH0gZnJvbSBcImNvbnRleHQvY29ubmVjdFwiO1xyXG5pbXBvcnQgeyB1c2VSb3V0ZXIgfSBmcm9tIFwibmV4dC9yb3V0ZXJcIjtcclxuaW1wb3J0IHsgRnJhZ21lbnQsIHVzZUVmZmVjdCwgdXNlU3RhdGUgfSBmcm9tIFwicmVhY3RcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFNpZGViYXIoKSB7XHJcbiAgICBjb25zdCByb3V0ZXIgPSB1c2VSb3V0ZXIoKTtcclxuICAgIGxldCBbcm9vbXMsIHNldFJvb21zXSA9IHVzZVN0YXRlKFtdKTtcclxuICAgIGxldCBbdXNlciwgc2V0VXNlcl0gPSB1c2VTdGF0ZShudWxsKTtcclxuICAgIGxldCBbaXNPcGVuLCBzZXRJc09wZW5dID0gdXNlU3RhdGUoZmFsc2UpO1xyXG4gICAgbGV0IFtwcm90ZWN0ZWRSb29tLCBzZXRQcm90ZWN0ZWRdID0gdXNlU3RhdGUoZmFsc2UpO1xyXG4gICAgbGV0IFtwYXNzd29yZCwgc2V0UGFzc3dvcmRdID0gdXNlU3RhdGUoJycpO1xyXG4gICAgY29uc3QgeyBjb25uZWN0aW9uIH0gPSB1c2VDb25uZWN0aW9uKCk7XHJcblxyXG4gICAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgICAgICBpZiAoY29ubmVjdGlvbikge1xyXG4gICAgICAgICAgICBjb25uZWN0aW9uLmVtaXQoJ2ZldGNoVXNlcicpO1xyXG4gICAgICAgICAgICBjb25uZWN0aW9uLm9uKCd1c2VyJywgZGF0YSA9PiB7XHJcbiAgICAgICAgICAgICAgICBpZiAoZGF0YSA9PT0gbnVsbCkge1xyXG4gICAgICAgICAgICAgICAgICAgIHJvdXRlci5wdXNoKCcvJyk7XHJcbiAgICAgICAgICAgICAgICB9IGVsc2Uge1xyXG4gICAgICAgICAgICAgICAgICAgIHNldFVzZXIoZGF0YSk7XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH0pO1xyXG5cclxuICAgICAgICAgICAgcmV0dXJuICgpID0+IHtcclxuICAgICAgICAgICAgICAgIGNvbm5lY3Rpb24ub2ZmKCd1c2VyJywgZGF0YSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgaWYgKGRhdGEgPT09IG51bGwpIHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgcm91dGVyLnB1c2goJy8nKTtcclxuICAgICAgICAgICAgICAgICAgICB9IGVsc2Uge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBzZXRVc2VyKGRhdGEpO1xyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIH0pO1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfSwgW2Nvbm5lY3Rpb25dKTtcclxuXHJcbiAgICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgICAgIGlmIChjb25uZWN0aW9uKSB7XHJcbiAgICAgICAgICAgIGNvbm5lY3Rpb24uZW1pdCgnZmV0Y2hSb29tcycpO1xyXG4gICAgICAgICAgICBjb25uZWN0aW9uLm9uKCdyb29tcycsIGRhdGEgPT4ge1xyXG4gICAgICAgICAgICAgICAgc2V0Um9vbXMoZGF0YS5yb29tcyk7XHJcbiAgICAgICAgICAgIH0pO1xyXG5cclxuICAgICAgICAgICAgcmV0dXJuICgpID0+IHtcclxuICAgICAgICAgICAgICAgIGNvbm5lY3Rpb24ub2ZmKCdyb29tcycsIGRhdGEgPT4ge1xyXG4gICAgICAgICAgICAgICAgICAgIGlmIChkYXRhLmlzTG9nZ2VkKSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHNldFVzZXIoZGF0YS51c2VyKTtcclxuICAgICAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICAgICAgc2V0Um9vbXMoZGF0YS5yb29tcyk7XHJcbiAgICAgICAgICAgICAgICB9KTtcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgIH1cclxuICAgIH0sIFtdKTtcclxuXHJcbiAgICBjb25zdCBKb2luUm9vbSA9IHJvb20gPT4ge1xyXG4gICAgICAgIGNvbnN0IHsgaWQsIHBhc3N3b3JkUHJvdGVjdGVkIH0gPSByb29tO1xyXG4gICAgICAgIGlmIChwYXNzd29yZFByb3RlY3RlZCkge1xyXG4gICAgICAgICAgICBzZXRJc09wZW4odHJ1ZSk7XHJcbiAgICAgICAgICAgIHNldFByb3RlY3RlZChyb29tKTtcclxuXHJcbiAgICAgICAgICAgIGlmIChwYXNzd29yZCkge1xyXG4gICAgICAgICAgICAgICAgY29ubmVjdGlvbi5lbWl0KCdqb2luUm9vbScsIHsgaWQsIHBhc3N3b3JkIH0pO1xyXG4gICAgICAgICAgICB9XHJcblxyXG4gICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgIGNvbm5lY3Rpb24uZW1pdCgnam9pblJvb20nLCB7IGlkIH0pO1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgY29ubmVjdGlvbi5vZmYoJ2pvaW5Sb29tJykub24oJ2pvaW5Sb29tJywgZGF0YSA9PiB7XHJcbiAgICAgICAgICAgIGlmIChkYXRhLnN1Y2Nlc3MpIHtcclxuICAgICAgICAgICAgICAgIHNldElzT3BlbihmYWxzZSk7XHJcbiAgICAgICAgICAgICAgICBzZXRQYXNzd29yZCgnJyk7XHJcbiAgICAgICAgICAgICAgICByb3V0ZXIucHVzaCgnL3Jvb21zLycgKyBpZCk7XHJcbiAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICBpZiAoZGF0YT8uYWxyZWFkeUluKSB7XHJcbiAgICAgICAgICAgICAgICAgICAgcm91dGVyLnB1c2goJy9yb29tcy8nICsgaWQpO1xyXG4gICAgICAgICAgICAgICAgfSBlbHNlIHtcclxuICAgICAgICAgICAgICAgICAgICBhbGVydChkYXRhLmVycm9yKVxyXG4gICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfSk7XHJcbiAgICB9XHJcblxyXG4gICAgcmV0dXJuIDw+XHJcblxyXG4gICAgICAgIDxUcmFuc2l0aW9uIGFwcGVhciBzaG93PXtpc09wZW59IGFzPXtGcmFnbWVudH0+XHJcbiAgICAgICAgICAgIDxEaWFsb2cgYXM9XCJkaXZcIiBjbGFzc05hbWU9XCJyZWxhdGl2ZSB6LTEwXCIgb25DbG9zZT17KCkgPT4ge1xyXG4gICAgICAgICAgICAgICAgc2V0SXNPcGVuKGZhbHNlKTtcclxuICAgICAgICAgICAgICAgIHNldFBhc3N3b3JkKCcnKTtcclxuICAgICAgICAgICAgfX0+XHJcbiAgICAgICAgICAgICAgICA8VHJhbnNpdGlvbi5DaGlsZFxyXG4gICAgICAgICAgICAgICAgICAgIGFzPXtGcmFnbWVudH1cclxuICAgICAgICAgICAgICAgICAgICBlbnRlcj1cImVhc2Utb3V0IGR1cmF0aW9uLTMwMFwiXHJcbiAgICAgICAgICAgICAgICAgICAgZW50ZXJGcm9tPVwib3BhY2l0eS0wXCJcclxuICAgICAgICAgICAgICAgICAgICBlbnRlclRvPVwib3BhY2l0eS0xMDBcIlxyXG4gICAgICAgICAgICAgICAgICAgIGxlYXZlPVwiZWFzZS1pbiBkdXJhdGlvbi0yMDBcIlxyXG4gICAgICAgICAgICAgICAgICAgIGxlYXZlRnJvbT1cIm9wYWNpdHktMTAwXCJcclxuICAgICAgICAgICAgICAgICAgICBsZWF2ZVRvPVwib3BhY2l0eS0wXCJcclxuICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZpeGVkIGluc2V0LTAgYmctYmxhY2sgYmctb3BhY2l0eS01MFwiIC8+XHJcbiAgICAgICAgICAgICAgICA8L1RyYW5zaXRpb24uQ2hpbGQ+XHJcblxyXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmaXhlZCBpbnNldC0wIG92ZXJmbG93LXktYXV0b1wiPlxyXG4gICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBtaW4taC1mdWxsIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBwLTQgdGV4dC1jZW50ZXJcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPFRyYW5zaXRpb24uQ2hpbGRcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFzPXtGcmFnbWVudH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVudGVyPVwiZWFzZS1vdXQgZHVyYXRpb24tMzAwXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVudGVyRnJvbT1cIm9wYWNpdHktMCBzY2FsZS05NVwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBlbnRlclRvPVwib3BhY2l0eS0xMDAgc2NhbGUtMTAwXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxlYXZlPVwiZWFzZS1pbiBkdXJhdGlvbi0yMDBcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgbGVhdmVGcm9tPVwib3BhY2l0eS0xMDAgc2NhbGUtMTAwXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxlYXZlVG89XCJvcGFjaXR5LTAgc2NhbGUtOTVcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8RGlhbG9nLlBhbmVsIGNsYXNzTmFtZT1cInctZnVsbCBtYXgtdy1tZCB0cmFuc2Zvcm0gb3ZlcmZsb3ctaGlkZGVuIHJvdW5kZWQtMnhsIGJnLWRhcmstMSBwLTYgdGV4dC1sZWZ0IGFsaWduLW1pZGRsZSBzaGFkb3cteGwgdHJhbnNpdGlvbi1hbGxcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8RGlhbG9nLlRpdGxlXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFzPVwiaDNcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJ0ZXh0LWxnIGZvbnQtbWVkaXVtIGxlYWRpbmctNiB0ZXh0LXdoaXRlXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFBhc3N3b3JkIFByb3RlY3RlZCBSb29tXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9EaWFsb2cuVGl0bGU+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGZvcm0gb25TdWJtaXQ9eyhlKSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGUucHJldmVudERlZmF1bHQoKTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgSm9pblJvb20ocHJvdGVjdGVkUm9vbSk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfX0+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXQtMlwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1zbSB0ZXh0LWdyYXktMzAwXCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVGhpcyByb29tIGlzIHBhc3N3b3JkIHByb3RlY3RlZC4gUGxlYXNlIGVudGVyIHRoZSBwYXNzd29yZCB0byBqb2luLlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9wPlxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR5cGU9XCJwYXNzd29yZFwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidy1mdWxsIG10LTIgcC0yIHJvdW5kZWQtbWQgYmctZGFyay0yIHRleHQtd2hpdGUgb3V0bGluZS1ub25lIGJvcmRlciBib3JkZXItd2hpdGUvNSBmb2N1czpib3JkZXItYmx1ZS01MDAgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMjAwXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2YWx1ZT17cGFzc3dvcmR9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2UgPT4gc2V0UGFzc3dvcmQoZS50YXJnZXQudmFsdWUpfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm10LTRcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0eXBlPVwiYnV0dG9uXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJ0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0yMDAgaW5saW5lLWZsZXgganVzdGlmeS1jZW50ZXIgdy1mdWxsIHJvdW5kZWQtbWQgYm9yZGVyIGJvcmRlci10cmFuc3BhcmVudCBzaGFkb3ctc20gcHgtNCBweS0yIGJnLWJsdWUtNTAwIHRleHQtYmFzZSBmb250LW1lZGl1bSB0ZXh0LXdoaXRlIGhvdmVyOmJnLWJsdWUtNjAwIGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpyaW5nLTIgZm9jdXM6cmluZy1vZmZzZXQtMiBmb2N1czpyaW5nLWJsdWUtNTAwIHNtOnRleHQtc21cIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEpvaW5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Zvcm0+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L0RpYWxvZy5QYW5lbD5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPC9UcmFuc2l0aW9uLkNoaWxkPlxyXG4gICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgIDwvRGlhbG9nPlxyXG4gICAgICAgIDwvVHJhbnNpdGlvbj5cclxuXHJcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzdGlja3kgdG9wLTAgaC1zY3JlZW4gdy05NiBiZy1kYXJrLTIgdGV4dC13aGl0ZSBwLTYgZmxleCBmbGV4LWNvbCBqdXN0aWZ5LWJldHdlZW5cIj5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGZsZXgtY29sIGl0ZW1zLWNlbnRlciBzcGFjZS15LTNcIj5cclxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtc2VtaS1ib2xkIGxlYWRpbmctbm9ybWFsIG1iLTRcIj5Sb29tczwvc3Bhbj5cclxuICAgICAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17KCkgPT4gcm91dGVyLnB1c2goJy9yb29tcy9jcmVhdGUnKX0gY2xhc3NOYW1lPVwidy1mdWxsIHJvdW5kZWQtbWQgcHgtNCBweS0yIGJvcmRlciBib3JkZXItZ3JheS0zMDAvNSB0ZXh0LWdyYXktMzAwIGJnLXppbmMtNTAwLzEwIGhvdmVyOmJnLXppbmMtNTAwLzIwIGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpyaW5nLTIgZm9jdXM6cmluZy1ibHVlLTcwMCBmb2N1czpyaW5nLW9wYWNpdHktNTAgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMjAwXCI+Q3JlYXRlIFJvb208L2J1dHRvbj5cclxuICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBmbGV4LWNvbCBoLWZ1bGwgbXQtNCBzcGFjZS15LTJcIj5cclxuICAgICAgICAgICAgICAgIHtyb29tcy5tYXAocm9vbSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIDxkaXYga2V5PXtyb29tLmlkfSBjbGFzc05hbWU9XCJmbGV4IGZsZXgtcm93IGl0ZW1zLWNlbnRlciBnYXAtMiBwLTIgcHItNCByb3VuZGVkLW1kIGhvdmVyOmJnLXppbmMtNTAwLzUgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMjAwIGN1cnNvci1wb2ludGVyXCIgb25DbGljaz17KCkgPT4gSm9pblJvb20ocm9vbSl9PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8aW1nIHNyYz17YGh0dHBzOi8vYXZhdGFycy5kaWNlYmVhci5jb20vYXBpL2luaXRpYWxzLyR7cm9vbT8ubmFtZSB8fCBcIk5vIE5hbWVcIn0ucG5nYH0gYWx0PVwidXNlcm5hbWVcIiBjbGFzc05hbWU9XCJ3LTEwIGgtMTAgcm91bmRlZC1tZFwiIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleC1zaHJpbmstMCBmbGV4IGZsZXgtY29sXCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJmb250LXNlbWlib2xkXCI+e3Jvb20ubmFtZX08L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXhzIHRleHQtZ3JheS00MDBcIj5DcmVhdGVkIGJ5IHtyb29tPy5vd25lcj8udXNlcm5hbWUuc3BsaXQoMCwgNSkgKyAnLi4uJ308L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC1yb3cganVzdGlmeS1lbmQgdy1mdWxsIGl0ZW1zLWNlbnRlciBzcGFjZS14LTFcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHtyb29tLnBhc3N3b3JkUHJvdGVjdGVkICYmIDxzdmcgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiIGNsYXNzTmFtZT1cImgtNSB3LTUgdGV4dC1ncmF5LTQwMFwiIHZpZXdCb3g9XCIwIDAgMjAgMjBcIiBmaWxsPVwiY3VycmVudENvbG9yXCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbFJ1bGU9XCJldmVub2RkXCIgZD1cIk0xMCAxMmEyIDIgMCAxMDAtNCAyIDIgMCAwMDAgNHpcIiBjbGlwUnVsZT1cImV2ZW5vZGRcIiAvPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGxSdWxlPVwiZXZlbm9kZFwiIGQ9XCJNMTAgMThhOCA4IDAgMTAwLTE2IDggOCAwIDAwMCAxNnptMCAyYTEwIDEwIDAgMTAwLTIwIDEwIDEwIDAgMDAwIDIwelwiIGNsaXBSdWxlPVwiZXZlbm9kZFwiIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3N2Zz59XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXhzIHRleHQtZ3JheS00MDBcIj57cm9vbS51c2VycyB8fCAwfS97cm9vbS5tYXhVc2Vyc308L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgfSl9XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGZsZXgtY29sIGl0ZW1zLWNlbnRlciBzcGFjZS15LTMgbXQtNiB3LWZ1bGxcIj5cclxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBmbGV4LXJvdyBpdGVtcy1jZW50ZXIgc3BhY2UteC0yIHctZnVsbCBob3ZlcjpiZy16aW5jLTUwMC81IHAtNCByb3VuZGVkLWxnIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTIwMFwiPlxyXG4gICAgICAgICAgICAgICAgICAgIDxpbWcgc3JjPXtgaHR0cHM6Ly9hdmF0YXJzLmRpY2ViZWFyLmNvbS9hcGkvbWljYWgvJHt1c2VyPy51c2VybmFtZSB8fCBcImNscXVcIn0ucG5nYH0gYWx0PVwidXNlcm5hbWVcIiBjbGFzc05hbWU9XCJoLTEwIHctMTAgcm91bmRlZC1mdWxsXCIgLz5cclxuICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJmb250LXNlbWlib2xkXCI+e3VzZXI/LnVzZXJuYW1lfTwvc3Bhbj5cclxuICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8L2Rpdj5cclxuICAgIDwvPlxyXG59Il0sIm5hbWVzIjpbIkRpYWxvZyIsIlRyYW5zaXRpb24iLCJ1c2VDb25uZWN0aW9uIiwidXNlUm91dGVyIiwiRnJhZ21lbnQiLCJ1c2VFZmZlY3QiLCJ1c2VTdGF0ZSIsIlNpZGViYXIiLCJyb3V0ZXIiLCJyb29tcyIsInNldFJvb21zIiwidXNlciIsInNldFVzZXIiLCJpc09wZW4iLCJzZXRJc09wZW4iLCJwcm90ZWN0ZWRSb29tIiwic2V0UHJvdGVjdGVkIiwicGFzc3dvcmQiLCJzZXRQYXNzd29yZCIsImNvbm5lY3Rpb24iLCJlbWl0Iiwib24iLCJkYXRhIiwicHVzaCIsIm9mZiIsImlzTG9nZ2VkIiwiSm9pblJvb20iLCJyb29tIiwiaWQiLCJwYXNzd29yZFByb3RlY3RlZCIsInN1Y2Nlc3MiLCJhbHJlYWR5SW4iLCJhbGVydCIsImVycm9yIiwiYXBwZWFyIiwic2hvdyIsImFzIiwiY2xhc3NOYW1lIiwib25DbG9zZSIsIkNoaWxkIiwiZW50ZXIiLCJlbnRlckZyb20iLCJlbnRlclRvIiwibGVhdmUiLCJsZWF2ZUZyb20iLCJsZWF2ZVRvIiwiZGl2IiwiUGFuZWwiLCJUaXRsZSIsImZvcm0iLCJvblN1Ym1pdCIsImUiLCJwcmV2ZW50RGVmYXVsdCIsInAiLCJpbnB1dCIsInR5cGUiLCJ2YWx1ZSIsIm9uQ2hhbmdlIiwidGFyZ2V0IiwiYnV0dG9uIiwic3BhbiIsIm9uQ2xpY2siLCJtYXAiLCJpbWciLCJzcmMiLCJuYW1lIiwiYWx0Iiwib3duZXIiLCJ1c2VybmFtZSIsInNwbGl0Iiwic3ZnIiwieG1sbnMiLCJ2aWV3Qm94IiwiZmlsbCIsInBhdGgiLCJmaWxsUnVsZSIsImQiLCJjbGlwUnVsZSIsInVzZXJzIiwibWF4VXNlcnMiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/Sidebar.jsx\n");
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ Sidebar)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(185);
+/* harmony import */ var context_connect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(89);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_headlessui_react__WEBPACK_IMPORTED_MODULE_1__, context_connect__WEBPACK_IMPORTED_MODULE_2__]);
+([_headlessui_react__WEBPACK_IMPORTED_MODULE_1__, context_connect__WEBPACK_IMPORTED_MODULE_2__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+
+function Sidebar() {
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
+    let { 0: rooms , 1: setRooms  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
+    let { 0: user , 1: setUser  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
+    let { 0: isOpen , 1: setIsOpen  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+    let { 0: protectedRoom , 1: setProtected  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+    let { 0: password , 1: setPassword  } = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)("");
+    const { connection  } = (0,context_connect__WEBPACK_IMPORTED_MODULE_2__/* .useConnection */ .Rc)();
+    (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{
+        if (connection) {
+            connection.emit("fetchUser");
+            connection.on("user", (data)=>{
+                if (data === null) {
+                    router.push("/");
+                } else {
+                    setUser(data);
+                }
+            });
+            return ()=>{
+                connection.off("user", (data)=>{
+                    if (data === null) {
+                        router.push("/");
+                    } else {
+                        setUser(data);
+                    }
+                });
+            };
+        }
+    }, [
+        connection
+    ]);
+    (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{
+        if (connection) {
+            connection.emit("fetchRooms");
+            connection.on("rooms", (data)=>{
+                setRooms(data.rooms);
+            });
+            return ()=>{
+                connection.off("rooms", (data)=>{
+                    if (data.isLogged) {
+                        setUser(data.user);
+                    }
+                    setRooms(data.rooms);
+                });
+            };
+        }
+    }, []);
+    const JoinRoom = (room)=>{
+        const { id , passwordProtected  } = room;
+        if (passwordProtected) {
+            setIsOpen(true);
+            setProtected(room);
+            if (password) {
+                connection.emit("joinRoom", {
+                    id,
+                    password
+                });
+            }
+        } else {
+            connection.emit("joinRoom", {
+                id
+            });
+        }
+        connection.off("joinRoom").on("joinRoom", (data)=>{
+            if (data.success) {
+                setIsOpen(false);
+                setPassword("");
+                router.push("/rooms/" + id);
+            } else {
+                if (data?.alreadyIn) {
+                    router.push("/rooms/" + id);
+                } else {
+                    alert(data.error);
+                }
+            }
+        });
+    };
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Transition, {
+                appear: true,
+                show: isOpen,
+                as: react__WEBPACK_IMPORTED_MODULE_4__.Fragment,
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Dialog, {
+                    as: "div",
+                    className: "relative z-10",
+                    onClose: ()=>{
+                        setIsOpen(false);
+                        setPassword("");
+                    },
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Transition.Child, {
+                            as: react__WEBPACK_IMPORTED_MODULE_4__.Fragment,
+                            enter: "ease-out duration-300",
+                            enterFrom: "opacity-0",
+                            enterTo: "opacity-100",
+                            leave: "ease-in duration-200",
+                            leaveFrom: "opacity-100",
+                            leaveTo: "opacity-0",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                className: "fixed inset-0 bg-black bg-opacity-50"
+                            })
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "fixed inset-0 overflow-y-auto",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                className: "flex min-h-full items-center justify-center p-4 text-center",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Transition.Child, {
+                                    as: react__WEBPACK_IMPORTED_MODULE_4__.Fragment,
+                                    enter: "ease-out duration-300",
+                                    enterFrom: "opacity-0 scale-95",
+                                    enterTo: "opacity-100 scale-100",
+                                    leave: "ease-in duration-200",
+                                    leaveFrom: "opacity-100 scale-100",
+                                    leaveTo: "opacity-0 scale-95",
+                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Dialog.Panel, {
+                                        className: "w-full max-w-md transform overflow-hidden rounded-2xl bg-dark-1 p-6 text-left align-middle shadow-xl transition-all",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_headlessui_react__WEBPACK_IMPORTED_MODULE_1__.Dialog.Title, {
+                                                as: "h3",
+                                                className: "text-lg font-medium leading-6 text-white",
+                                                children: "Password Protected Room"
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+                                                onSubmit: (e)=>{
+                                                    e.preventDefault();
+                                                    JoinRoom(protectedRoom);
+                                                },
+                                                children: [
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                        className: "mt-2",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                                className: "text-sm text-gray-300",
+                                                                children: "This room is password protected. Please enter the password to join."
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                                type: "password",
+                                                                className: "w-full mt-2 p-2 rounded-md bg-dark-2 text-white outline-none border border-white/5 focus:border-blue-500 transition-all duration-200",
+                                                                value: password,
+                                                                onChange: (e)=>setPassword(e.target.value)
+                                                            })
+                                                        ]
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "mt-4",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                            type: "button",
+                                                            className: "transition-all duration-200 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm",
+                                                            children: "Join"
+                                                        })
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                })
+                            })
+                        })
+                    ]
+                })
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "sticky top-0 h-screen w-96 bg-dark-2 text-white p-6 flex flex-col justify-between",
+                children: [
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        className: "flex flex-col items-center space-y-3",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                className: "text-2xl font-semi-bold leading-normal mb-4",
+                                children: "Rooms"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                onClick: ()=>router.push("/rooms/create"),
+                                className: "w-full rounded-md px-4 py-2 border border-gray-300/5 text-gray-300 bg-zinc-500/10 hover:bg-zinc-500/20 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 transition-all duration-200",
+                                children: "Create Room"
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "flex flex-col h-full mt-4 space-y-2",
+                        children: rooms.map((room)=>{
+                            return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                className: "flex flex-row items-center gap-2 p-2 pr-4 rounded-md hover:bg-zinc-500/5 transition-all duration-200 cursor-pointer",
+                                onClick: ()=>JoinRoom(room),
+                                children: [
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                        src: `https://avatars.dicebear.com/api/initials/${room?.name || "No Name"}.png`,
+                                        alt: "username",
+                                        className: "w-10 h-10 rounded-md"
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "flex-shrink-0 flex flex-col",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "font-semibold",
+                                                children: room.name
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                                className: "text-xs text-gray-400",
+                                                children: [
+                                                    "Created by ",
+                                                    room?.owner?.username.split(0, 5) + "..."
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "flex flex-row justify-end w-full items-center space-x-1",
+                                        children: [
+                                            room.passwordProtected && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                xmlns: "http://www.w3.org/2000/svg",
+                                                className: "h-5 w-5 text-gray-400",
+                                                viewBox: "0 0 20 20",
+                                                fill: "currentColor",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                        fillRule: "evenodd",
+                                                        d: "M10 12a2 2 0 100-4 2 2 0 000 4z",
+                                                        clipRule: "evenodd"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                        fillRule: "evenodd",
+                                                        d: "M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20z",
+                                                        clipRule: "evenodd"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                                className: "text-xs text-gray-400",
+                                                children: [
+                                                    room.users || 0,
+                                                    "/",
+                                                    room.maxUsers
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                ]
+                            }, room.id);
+                        })
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "flex flex-col items-center space-y-3 mt-6 w-full",
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "flex flex-row items-center space-x-2 w-full hover:bg-zinc-500/5 p-4 rounded-lg transition-all duration-200",
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                    src: `https://avatars.dicebear.com/api/micah/${user?.username || "clqu"}.png`,
+                                    alt: "username",
+                                    className: "h-10 w-10 rounded-full"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "font-semibold",
+                                    children: user?.username
+                                })
+                            ]
+                        })
+                    })
+                ]
+            })
+        ]
+    });
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
 
 /***/ }),
 
-/***/ "./src/context/connect.js":
-/*!********************************!*\
-  !*** ./src/context/connect.js ***!
-  \********************************/
+/***/ 149:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Provider\": () => (/* binding */ Provider),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"useConnection\": () => (/* binding */ useConnection)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! socket.io-client */ \"socket.io-client\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([socket_io_client__WEBPACK_IMPORTED_MODULE_2__]);\nsocket_io_client__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\n\n\nconst Context = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)();\nconst useConnection = ()=>(0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(Context);\nconst Provider = ({ children  })=>{\n    const { 0: connection , 1: setConnection  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const data = {\n        connection\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{\n        fetch(\"/api/socket\");\n        const socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n        socket.connect();\n        socket.on(\"connect\", ()=>{\n            setConnection(socket);\n        });\n        return ()=>{\n            socket.off(\"connect\");\n        };\n    }, []);\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Context.Provider, {\n        value: {\n            ...data\n        },\n        children: children\n    }, void 0, false, {\n        fileName: \"/workspace/chatapp/src/context/connect.js\",\n        lineNumber: 33,\n        columnNumber: 9\n    }, undefined);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Context);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29udGV4dC9jb25uZWN0LmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7O0FBQUE7QUFBdUU7QUFDckM7QUFFbEMsTUFBTUssT0FBTyxpQkFBR0osb0RBQWEsRUFBRTtBQUN4QixNQUFNSyxhQUFhLEdBQUcsSUFBTU4saURBQVUsQ0FBQ0ssT0FBTyxDQUFDLENBQUM7QUFFaEQsTUFBTUUsUUFBUSxHQUFHLENBQUMsRUFBRUMsUUFBUSxHQUFFLEdBQUs7SUFFdEMsTUFBTSxLQUFDQyxVQUFVLE1BQUVDLGFBQWEsTUFBSVIsK0NBQVEsQ0FBQyxJQUFJLENBQUM7SUFHbEQsTUFBTVMsSUFBSSxHQUFHO1FBQ1RGLFVBQVU7S0FDYjtJQUVETixnREFBUyxDQUFDLElBQU07UUFDWlMsS0FBSyxDQUFDLGFBQWEsQ0FBQyxDQUFDO1FBRXJCLE1BQU1DLE1BQU0sR0FBR1QsNERBQUUsRUFBRTtRQUNuQlMsTUFBTSxDQUFDQyxPQUFPLEVBQUUsQ0FBQztRQUVqQkQsTUFBTSxDQUFDRSxFQUFFLENBQUMsU0FBUyxFQUFFLElBQU07WUFDdkJMLGFBQWEsQ0FBQ0csTUFBTSxDQUFDLENBQUM7U0FDekIsQ0FBQyxDQUFDO1FBR0gsT0FBTyxJQUFNO1lBQ1RBLE1BQU0sQ0FBQ0csR0FBRyxDQUFDLFNBQVMsQ0FBQyxDQUFDO1NBQ3pCLENBQUM7S0FDTCxFQUFFLEVBQUUsQ0FBQyxDQUFDO0lBRVAscUJBQ0ksOERBQUNYLE9BQU8sQ0FBQ0UsUUFBUTtRQUFDVSxLQUFLLEVBQUU7WUFBRSxHQUFHTixJQUFJO1NBQUU7a0JBQy9CSCxRQUFROzs7OztpQkFDTSxDQUNyQjtDQUNMLENBQUM7QUFFRixpRUFBZUgsT0FBTyxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWNoYXQvLi9zcmMvY29udGV4dC9jb25uZWN0LmpzP2JkMGMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlQ29udGV4dCwgY3JlYXRlQ29udGV4dCwgdXNlU3RhdGUsIHVzZUVmZmVjdCB9IGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IGlvIGZyb20gXCJzb2NrZXQuaW8tY2xpZW50XCI7XHJcblxyXG5jb25zdCBDb250ZXh0ID0gY3JlYXRlQ29udGV4dCgpO1xyXG5leHBvcnQgY29uc3QgdXNlQ29ubmVjdGlvbiA9ICgpID0+IHVzZUNvbnRleHQoQ29udGV4dCk7XHJcblxyXG5leHBvcnQgY29uc3QgUHJvdmlkZXIgPSAoeyBjaGlsZHJlbiB9KSA9PiB7XHJcblxyXG4gICAgY29uc3QgW2Nvbm5lY3Rpb24sIHNldENvbm5lY3Rpb25dID0gdXNlU3RhdGUobnVsbCk7XHJcbiAgICBcclxuICAgIFxyXG4gICAgY29uc3QgZGF0YSA9IHtcclxuICAgICAgICBjb25uZWN0aW9uLFxyXG4gICAgfTtcclxuXHJcbiAgICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgICAgIGZldGNoKFwiL2FwaS9zb2NrZXRcIik7XHJcblxyXG4gICAgICAgIGNvbnN0IHNvY2tldCA9IGlvKCk7XHJcbiAgICAgICAgc29ja2V0LmNvbm5lY3QoKTtcclxuXHJcbiAgICAgICAgc29ja2V0Lm9uKCdjb25uZWN0JywgKCkgPT4ge1xyXG4gICAgICAgICAgICBzZXRDb25uZWN0aW9uKHNvY2tldCk7XHJcbiAgICAgICAgfSk7XHJcbiAgICAgICAgXHJcblxyXG4gICAgICAgIHJldHVybiAoKSA9PiB7XHJcbiAgICAgICAgICAgIHNvY2tldC5vZmYoJ2Nvbm5lY3QnKTtcclxuICAgICAgICB9O1xyXG4gICAgfSwgW10pO1xyXG5cclxuICAgIHJldHVybiAoXHJcbiAgICAgICAgPENvbnRleHQuUHJvdmlkZXIgdmFsdWU9e3sgLi4uZGF0YSB9fT5cclxuICAgICAgICAgICAge2NoaWxkcmVufVxyXG4gICAgICAgIDwvQ29udGV4dC5Qcm92aWRlcj5cclxuICAgICk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBDb250ZXh0O1xyXG4iXSwibmFtZXMiOlsidXNlQ29udGV4dCIsImNyZWF0ZUNvbnRleHQiLCJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsImlvIiwiQ29udGV4dCIsInVzZUNvbm5lY3Rpb24iLCJQcm92aWRlciIsImNoaWxkcmVuIiwiY29ubmVjdGlvbiIsInNldENvbm5lY3Rpb24iLCJkYXRhIiwiZmV0Y2giLCJzb2NrZXQiLCJjb25uZWN0Iiwib24iLCJvZmYiLCJ2YWx1ZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/context/connect.js\n");
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var context_connect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(89);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var components_Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(798);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(968);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([context_connect__WEBPACK_IMPORTED_MODULE_1__, components_Sidebar__WEBPACK_IMPORTED_MODULE_3__]);
+([context_connect__WEBPACK_IMPORTED_MODULE_1__, components_Sidebar__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+
+
+function MyApp({ Component , pageProps  }) {
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(context_connect__WEBPACK_IMPORTED_MODULE_1__/* .Provider */ .zt, {
+        children: [
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_4___default()), {
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
+                        children: "Chat App"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                        name: "viewport",
+                        content: "initial-scale=1.0, width=device-width"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                        rel: "preconnect",
+                        href: "https://fonts.googleapis.com"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                        rel: "preconnect",
+                        href: "https://fonts.gstatic.com",
+                        crossOrigin: "true"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap",
+                        rel: "stylesheet"
+                    })
+                ]
+            }),
+            router.pathname.includes("rooms") ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "flex",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(components_Sidebar__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "overflow-y-auto w-full",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
+                            ...pageProps
+                        })
+                    })
+                ]
+            }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
+                ...pageProps
+            })
+        ]
+    });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyApp);
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
 
 /***/ }),
 
-/***/ "./src/pages/_app.jsx":
-/*!****************************!*\
-  !*** ./src/pages/_app.jsx ***!
-  \****************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var styles_globals_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styles/globals.css */ \"./src/styles/globals.css\");\n/* harmony import */ var styles_globals_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styles_globals_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var context_connect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! context/connect */ \"./src/context/connect.js\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ \"next/router\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var components_Sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! components/Sidebar */ \"./src/components/Sidebar.jsx\");\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/head */ \"next/head\");\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_5__);\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([context_connect__WEBPACK_IMPORTED_MODULE_2__, components_Sidebar__WEBPACK_IMPORTED_MODULE_4__]);\n([context_connect__WEBPACK_IMPORTED_MODULE_2__, components_Sidebar__WEBPACK_IMPORTED_MODULE_4__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n\n\n\n\n\n\nfunction MyApp({ Component , pageProps  }) {\n    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(context_connect__WEBPACK_IMPORTED_MODULE_2__.Provider, {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_head__WEBPACK_IMPORTED_MODULE_5___default()), {\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"title\", {\n                        children: \"Chat App\"\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                        lineNumber: 11,\n                        columnNumber: 7\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"viewport\",\n                        content: \"initial-scale=1.0, width=device-width\"\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                        lineNumber: 12,\n                        columnNumber: 7\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"link\", {\n                        rel: \"preconnect\",\n                        href: \"https://fonts.googleapis.com\"\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                        lineNumber: 13,\n                        columnNumber: 7\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"link\", {\n                        rel: \"preconnect\",\n                        href: \"https://fonts.gstatic.com\",\n                        crossOrigin: \"true\"\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                        lineNumber: 14,\n                        columnNumber: 7\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"link\", {\n                        href: \"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap\",\n                        rel: \"stylesheet\"\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                        lineNumber: 15,\n                        columnNumber: 7\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                lineNumber: 10,\n                columnNumber: 5\n            }, this),\n            router.pathname.includes(\"rooms\") ? /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"flex\",\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(components_Sidebar__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {}, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                        lineNumber: 19,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: \"overflow-y-auto w-full\",\n                        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Component, {\n                            ...pageProps\n                        }, void 0, false, {\n                            fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                            lineNumber: 21,\n                            columnNumber: 11\n                        }, this)\n                    }, void 0, false, {\n                        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                        lineNumber: 20,\n                        columnNumber: 9\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                lineNumber: 18,\n                columnNumber: 7\n            }, this) : /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Component, {\n                ...pageProps\n            }, void 0, false, {\n                fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n                lineNumber: 24,\n                columnNumber: 9\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"/workspace/chatapp/src/pages/_app.jsx\",\n        lineNumber: 9,\n        columnNumber: 10\n    }, this);\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyApp);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvcGFnZXMvX2FwcC5qc3guanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQUEyQjtBQUNxQztBQUN6QjtBQUNFO0FBQ1o7QUFFN0IsU0FBU0ssS0FBSyxDQUFDLEVBQUVDLFNBQVMsR0FBRUMsU0FBUyxHQUFFLEVBQUU7SUFDdkMsTUFBTUMsTUFBTSxHQUFHTixzREFBUyxFQUFFO0lBQzFCLHFCQUFPLDhEQUFDRCxxREFBa0I7OzBCQUN4Qiw4REFBQ0csa0RBQUk7O2tDQUNILDhEQUFDSyxPQUFLO2tDQUFDLFVBQVE7Ozs7OzRCQUFRO2tDQUN2Qiw4REFBQ0MsTUFBSTt3QkFBQ0MsSUFBSSxFQUFDLFVBQVU7d0JBQUNDLE9BQU8sRUFBQyx1Q0FBdUM7Ozs7OzRCQUFHO2tDQUN4RSw4REFBQ0MsTUFBSTt3QkFBQ0MsR0FBRyxFQUFDLFlBQVk7d0JBQUNDLElBQUksRUFBQyw4QkFBOEI7Ozs7OzRCQUFHO2tDQUM3RCw4REFBQ0YsTUFBSTt3QkFBQ0MsR0FBRyxFQUFDLFlBQVk7d0JBQUNDLElBQUksRUFBQywyQkFBMkI7d0JBQUNDLFdBQVcsRUFBQyxNQUFNOzs7Ozs0QkFBRztrQ0FDN0UsOERBQUNILE1BQUk7d0JBQUNFLElBQUksRUFBQyx3RkFBd0Y7d0JBQUNELEdBQUcsRUFBQyxZQUFZOzs7Ozs0QkFBRzs7Ozs7O29CQUNsSDtZQUNOTixNQUFNLENBQUNTLFFBQVEsQ0FBQ0MsUUFBUSxDQUFDLE9BQU8sQ0FBQyxpQkFDaEMsOERBQUNDLEtBQUc7Z0JBQUNDLFNBQVMsRUFBQyxNQUFNOztrQ0FDbkIsOERBQUNqQiwwREFBTzs7Ozs0QkFBRztrQ0FDWCw4REFBQ2dCLEtBQUc7d0JBQUNDLFNBQVMsRUFBQyx3QkFBd0I7a0NBQ3JDLDRFQUFDZCxTQUFTOzRCQUFFLEdBQUdDLFNBQVM7Ozs7O2dDQUFJOzs7Ozs0QkFDeEI7Ozs7OztvQkFDRixpQkFDSiw4REFBQ0QsU0FBUztnQkFBRSxHQUFHQyxTQUFTOzs7OztvQkFBSTs7Ozs7O1lBQ2I7Q0FDdEI7QUFFRCxpRUFBZUYsS0FBSyxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWNoYXQvLi9zcmMvcGFnZXMvX2FwcC5qc3g/NGM3NyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgJ3N0eWxlcy9nbG9iYWxzLmNzcydcbmltcG9ydCB7IFByb3ZpZGVyIGFzIENvbm5lY3Rpb25Qcm92aWRlciB9IGZyb20gJ2NvbnRleHQvY29ubmVjdCdcbmltcG9ydCB7IHVzZVJvdXRlciB9IGZyb20gJ25leHQvcm91dGVyJ1xuaW1wb3J0IFNpZGViYXIgZnJvbSAnY29tcG9uZW50cy9TaWRlYmFyJztcbmltcG9ydCBIZWFkIGZyb20gJ25leHQvaGVhZCc7XG5cbmZ1bmN0aW9uIE15QXBwKHsgQ29tcG9uZW50LCBwYWdlUHJvcHMgfSkge1xuICBjb25zdCByb3V0ZXIgPSB1c2VSb3V0ZXIoKTtcbiAgcmV0dXJuIDxDb25uZWN0aW9uUHJvdmlkZXI+XG4gICAgPEhlYWQ+XG4gICAgICA8dGl0bGU+Q2hhdCBBcHA8L3RpdGxlPlxuICAgICAgPG1ldGEgbmFtZT1cInZpZXdwb3J0XCIgY29udGVudD1cImluaXRpYWwtc2NhbGU9MS4wLCB3aWR0aD1kZXZpY2Utd2lkdGhcIiAvPlxuICAgICAgPGxpbmsgcmVsPVwicHJlY29ubmVjdFwiIGhyZWY9XCJodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tXCIgLz5cbiAgICAgIDxsaW5rIHJlbD1cInByZWNvbm5lY3RcIiBocmVmPVwiaHR0cHM6Ly9mb250cy5nc3RhdGljLmNvbVwiIGNyb3NzT3JpZ2luPVwidHJ1ZVwiIC8+XG4gICAgICA8bGluayBocmVmPVwiaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1Qb3BwaW5zOndnaHRAMzAwOzQwMDs1MDA7NjAwOzcwMCZkaXNwbGF5PXN3YXBcIiByZWw9XCJzdHlsZXNoZWV0XCIgLz5cbiAgICA8L0hlYWQ+XG4gICAge3JvdXRlci5wYXRobmFtZS5pbmNsdWRlcygncm9vbXMnKSA/IChcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleFwiPlxuICAgICAgICA8U2lkZWJhciAvPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm92ZXJmbG93LXktYXV0byB3LWZ1bGxcIj5cbiAgICAgICAgICA8Q29tcG9uZW50IHsuLi5wYWdlUHJvcHN9IC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgKSA6IDxDb21wb25lbnQgey4uLnBhZ2VQcm9wc30gLz59XG4gIDwvQ29ubmVjdGlvblByb3ZpZGVyPlxufVxuXG5leHBvcnQgZGVmYXVsdCBNeUFwcDtcbiJdLCJuYW1lcyI6WyJQcm92aWRlciIsIkNvbm5lY3Rpb25Qcm92aWRlciIsInVzZVJvdXRlciIsIlNpZGViYXIiLCJIZWFkIiwiTXlBcHAiLCJDb21wb25lbnQiLCJwYWdlUHJvcHMiLCJyb3V0ZXIiLCJ0aXRsZSIsIm1ldGEiLCJuYW1lIiwiY29udGVudCIsImxpbmsiLCJyZWwiLCJocmVmIiwiY3Jvc3NPcmlnaW4iLCJwYXRobmFtZSIsImluY2x1ZGVzIiwiZGl2IiwiY2xhc3NOYW1lIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/pages/_app.jsx\n");
-
-/***/ }),
-
-/***/ "./src/styles/globals.css":
-/*!********************************!*\
-  !*** ./src/styles/globals.css ***!
-  \********************************/
-/***/ (() => {
-
-
-
-/***/ }),
-
-/***/ "next/head":
-/*!****************************!*\
-  !*** external "next/head" ***!
-  \****************************/
+/***/ 968:
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("next/head");
 
 /***/ }),
 
-/***/ "next/router":
-/*!******************************!*\
-  !*** external "next/router" ***!
-  \******************************/
+/***/ 853:
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("next/router");
 
 /***/ }),
 
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
+/***/ 689:
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("react");
 
 /***/ }),
 
-/***/ "react/jsx-dev-runtime":
-/*!****************************************!*\
-  !*** external "react/jsx-dev-runtime" ***!
-  \****************************************/
+/***/ 997:
 /***/ ((module) => {
 
-"use strict";
-module.exports = require("react/jsx-dev-runtime");
+module.exports = require("react/jsx-runtime");
 
 /***/ }),
 
-/***/ "@headlessui/react":
-/*!************************************!*\
-  !*** external "@headlessui/react" ***!
-  \************************************/
+/***/ 185:
 /***/ ((module) => {
 
-"use strict";
 module.exports = import("@headlessui/react");;
 
 /***/ }),
 
-/***/ "socket.io-client":
-/*!***********************************!*\
-  !*** external "socket.io-client" ***!
-  \***********************************/
+/***/ 612:
 /***/ ((module) => {
 
-"use strict";
 module.exports = import("socket.io-client");;
 
 /***/ })
@@ -128,7 +422,7 @@ module.exports = import("socket.io-client");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("./src/pages/_app.jsx"));
+var __webpack_exports__ = __webpack_require__.X(0, [89], () => (__webpack_exec__(149)));
 module.exports = __webpack_exports__;
 
 })();
